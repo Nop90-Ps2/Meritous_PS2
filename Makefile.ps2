@@ -1,0 +1,31 @@
+# name
+EE_BIN = meritous.elf
+
+
+EE_OBJS = src/levelblit.o \
+	src/mapgen.o \
+	src/demon.o \
+	src/gamemap.o \
+	src/tiles.o \
+	src/save.o \
+	src/help.o \
+	src/audio.o \
+	src/boss.o \
+	src/ending.o
+
+EE_INCS = -I$(PS2SDK)/ports/include/SDL -I$(PS2SDK)/ports/include -I./src -I./ps2
+EE_LDFLAGS = -L$(PS2SDK)/ports/lib -L$(PS2DEV)/gsKit/lib
+EE_LIBS = -lsdlmain -lSDL_image -lsdlmixer -lsdl -lz  
+EE_CFLAGS += -DPS2 
+
+all: $(EE_BIN)
+
+clean:
+	rm -f $(EE_OBJS) $(EE_BIN)
+
+include $(PS2SDK)/samples/Makefile.pref
+include $(PS2SDK)/samples/Makefile.eeglobal_cpp
+
+
+
+
